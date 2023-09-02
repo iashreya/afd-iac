@@ -10,3 +10,9 @@ IaC with TF for AFD
 * Set subscription
 * Create a service principal
 * Set environment variables with Client ID, Client Secret, Subscription ID & Tenanat ID
+
+## Configuration Changes
+* terraform validate
+* terraform fmt
+* terraform plan
+* terraform apply
