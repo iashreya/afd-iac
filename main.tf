@@ -14,14 +14,11 @@ resource "azurerm_cdn_frontdoor_endpoint" "ep" {
   cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.fd.id
 }
 
-resource "azurerm_cdn_frontdoor_custom_domain" "cus_domain" {
-  name                     = "fd-custom-domain"
-  cdn_frontdoor_profile_id = azurerm_cdn_frontdoor_profile.fd.id
-  host_name                = "shanand.licdn-beta.com"
-  tls {
-    certificate_type    = "ManagedCertificate"
-    minimum_tls_version = "TLS12"
-  }
+module "custom_domains" {
+  count    = length(var.custom_domains)
+  source   = "./modules/customdomains"
+  hostname = var.custom_domains[count.index]
+  fd_id    = azurerm_cdn_frontdoor_profile.fd.id
 }
 
 module "origin_group" {

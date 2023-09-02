@@ -6,3 +6,8 @@ variable "origin_group_names" {
     lor1-lx = "pop-lor1-lx"
   }
 }
+
+variable "custom_domains" {
+  type    = list(string)
+  default = ["shanand.licdn-beta.com"]
+}
