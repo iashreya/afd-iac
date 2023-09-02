@@ -1,9 +1,24 @@
 variable "origin_group_names" {
-  type = map(string)
+  type = map(list(object({
+    name = string
+    priority = number
+  })))
   default = {
-    ltx1-lx = "pop-ltx1-lx",
-    lva1-lx = "pop-lva1-lx",
-    lor1-lx = "pop-lor1-lx"
+    ltx1-lx = [
+      {name = "pop-ltx1-lx", priority = 1},
+      {name = "pop-lor1-lx", priority = 2},
+      {name = "pop-lva1-lx", priority = 2}
+      ],
+    lor1-lx = [
+      {name = "pop-ltx1-lx", priority = 2},
+      {name = "pop-lor1-lx", priority = 1},
+      {name = "pop-lva1-lx", priority = 2}
+      ], 
+    lva1-lx = [
+      {name = "pop-ltx1-lx", priority = 2},
+      {name = "pop-lor1-lx", priority = 2},
+      {name = "pop-lva1-lx", priority = 1}
+      ]
   }
 }
 

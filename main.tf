@@ -25,5 +25,6 @@ module "origin_group" {
   for_each          = var.origin_group_names
   source            = "./modules/origingroups"
   origin_group_name = each.key
+  origin_name_and_priority = each.value
   fd_id             = azurerm_cdn_frontdoor_profile.fd.id
 }

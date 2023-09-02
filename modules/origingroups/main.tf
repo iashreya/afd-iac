@@ -18,9 +18,9 @@ resource "azurerm_cdn_frontdoor_origin_group" "og" {
 }
 
 module "origin" {
-  for_each = var.origin_names
+  count = length(var.origin_name_and_priority)
   source = "../origin"
-  origin_name = each.key
-  priority = each.value
+  origin_name = var.origin_name_and_priority[count.index].name
+  priority = var.origin_name_and_priority[count.index].priority
   og_id = azurerm_cdn_frontdoor_origin_group.og.id
 }
