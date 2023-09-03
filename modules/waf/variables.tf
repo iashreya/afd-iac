@@ -16,3 +16,16 @@ variable "waf_mode" {
   type = string
   default = "Detection"
 }
+
+variable "fd_id" {
+  type = string
+}
+
+variable "ep_id" {
+  type = string
+}
+
+variable "secpol_name" {
+  type = string
+  default = "basicwaf"
+}

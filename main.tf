@@ -22,17 +22,19 @@ module "custom_domains" {
 }
 
 module "origin_group" {
-  for_each          = var.origin_group_names
-  source            = "./modules/origingroups"
-  origin_group_name = each.key
+  for_each                 = var.origin_group_names
+  source                   = "./modules/origingroups"
+  origin_group_name        = each.key
   origin_name_and_priority = each.value
-  fd_id             = azurerm_cdn_frontdoor_profile.fd.id
+  fd_id                    = azurerm_cdn_frontdoor_profile.fd.id
 }
 
 module "waf" {
-  source = "./modules/waf"
-  waf_name = var.waf_name
-  rg_name = azurerm_resource_group.rg.name
-  waf_sku_name = var.waf_sku_name
-  waf_mode = var.waf_mode
+  source       = "./modules/waf"
+  waf_name     = var.waf_name
+  rg_name      = azurerm_resource_group.rg.name
+  waf_sku_name = azurerm_cdn_frontdoor_profile.fd.sku_name
+  waf_mode     = var.waf_mode
+  fd_id        = azurerm_cdn_frontdoor_profile.fd.id
+  ep_id        = azurerm_cdn_frontdoor_endpoint.ep.id
 }

@@ -4,3 +4,20 @@ resource "azurerm_cdn_frontdoor_firewall_policy" "waf" {
   sku_name = var.waf_sku_name
   mode = var.waf_mode
 }
+
+resource "azurerm_cdn_frontdoor_security_policy" "secpol" {
+  name = var.secpol_name
+  cdn_frontdoor_profile_id = var.fd_id
+
+  security_policies {
+    firewall {
+      cdn_frontdoor_firewall_policy_id = azurerm_cdn_frontdoor_firewall_policy.waf.id
+      association {
+        domain {
+          cdn_frontdoor_domain_id = var.ep_id
+        }
+        patterns_to_match = ["/*"]
+      }
+    }
+  }
+}
