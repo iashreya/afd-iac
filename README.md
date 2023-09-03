@@ -16,5 +16,3 @@ IaC with TF for AFD
 * terraform fmt
 * terraform plan
 * terraform apply
-
-Added branch WAF
