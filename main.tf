@@ -1,12 +1,12 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "AFD-Test"
-  location = "East US"
+  name     = var.rg_name
+  location = var.rg_location
 }
 
 resource "azurerm_cdn_frontdoor_profile" "fd" {
-  name                = "fd-test"
+  name                = var.fd_name
   resource_group_name = azurerm_resource_group.rg.name
-  sku_name            = "Premium_AzureFrontDoor"
+  sku_name            = var.fd_sku_name
 }
 
 resource "azurerm_cdn_frontdoor_endpoint" "ep" {
@@ -27,4 +27,12 @@ module "origin_group" {
   origin_group_name = each.key
   origin_name_and_priority = each.value
   fd_id             = azurerm_cdn_frontdoor_profile.fd.id
+}
+
+module "waf" {
+  source = "./modules/waf"
+  waf_name = var.waf_name
+  rg_name = azurerm_resource_group.rg.name
+  waf_sku_name = var.waf_sku_name
+  waf_mode = var.waf_mode
 }
