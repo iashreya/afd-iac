@@ -1,44 +1,44 @@
 variable "rg_name" {
-  type = string
+  type    = string
   default = "AFD-Test"
 }
 
 variable "rg_location" {
-  type = string
+  type    = string
   default = "East US"
 }
 
 variable "fd_name" {
-  type = string
+  type    = string
   default = "fd-test"
 }
 
 variable "fd_sku_name" {
-  type = string
+  type    = string
   default = "Premium_AzureFrontDoor"
 }
 
 variable "origin_group_names" {
   type = map(list(object({
-    name = string
+    name     = string
     priority = number
   })))
   default = {
     ltx1-lx = [
-      {name = "pop-ltx1-lx", priority = 1},
-      {name = "pop-lor1-lx", priority = 2},
-      {name = "pop-lva1-lx", priority = 2}
-      ],
+      { name = "pop-ltx1-lx", priority = 1 },
+      { name = "pop-lor1-lx", priority = 2 },
+      { name = "pop-lva1-lx", priority = 2 }
+    ],
     lor1-lx = [
-      {name = "pop-ltx1-lx", priority = 2},
-      {name = "pop-lor1-lx", priority = 1},
-      {name = "pop-lva1-lx", priority = 2}
-      ], 
+      { name = "pop-ltx1-lx", priority = 2 },
+      { name = "pop-lor1-lx", priority = 1 },
+      { name = "pop-lva1-lx", priority = 2 }
+    ],
     lva1-lx = [
-      {name = "pop-ltx1-lx", priority = 2},
-      {name = "pop-lor1-lx", priority = 2},
-      {name = "pop-lva1-lx", priority = 1}
-      ]
+      { name = "pop-ltx1-lx", priority = 2 },
+      { name = "pop-lor1-lx", priority = 2 },
+      { name = "pop-lva1-lx", priority = 1 }
+    ]
   }
 }
 
@@ -47,17 +47,12 @@ variable "custom_domains" {
   default = ["shanand.licdn-beta.com"]
 }
 
-variable "waf_sku_name" {
-  type = string
-  default = "Standard_AzureFrontDoor"
-}
-
 variable "waf_mode" {
-  type = string
+  type    = string
   default = "Detection"
 }
 
 variable "waf_name" {
-  type = string
+  type    = string
   default = "fdwaf"
 }
