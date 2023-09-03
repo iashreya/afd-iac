@@ -1,3 +1,23 @@
+variable "rg_name" {
+  type = string
+  default = "AFD-Test"
+}
+
+variable "rg_location" {
+  type = string
+  default = "East US"
+}
+
+variable "fd_name" {
+  type = string
+  default = "fd-test"
+}
+
+variable "fd_sku_name" {
+  type = string
+  default = "Premium_AzureFrontDoor"
+}
+
 variable "origin_group_names" {
   type = map(list(object({
     name = string
@@ -25,4 +45,19 @@ variable "origin_group_names" {
 variable "custom_domains" {
   type    = list(string)
   default = ["shanand.licdn-beta.com"]
+}
+
+variable "waf_sku_name" {
+  type = string
+  default = "Standard_AzureFrontDoor"
+}
+
+variable "waf_mode" {
+  type = string
+  default = "Detection"
+}
+
+variable "waf_name" {
+  type = string
+  default = "fdwaf"
 }
