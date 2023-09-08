@@ -1,6 +1,6 @@
 variable "waf_name" {
-    type = string
-    default = "fdwaf"
+  type    = string
+  default = "fdwaf"
 }
 
 variable "rg_name" {
@@ -8,12 +8,12 @@ variable "rg_name" {
 }
 
 variable "waf_sku_name" {
-  type = string
+  type    = string
   default = "Standard_AzureFrontDoor"
 }
 
 variable "waf_mode" {
-  type = string
+  type    = string
   default = "Detection"
 }
 
@@ -26,6 +26,6 @@ variable "ep_id" {
 }
 
 variable "secpol_name" {
-  type = string
+  type    = string
   default = "basicwaf"
 }
