@@ -1,9 +1,25 @@
 name: 'Terraform Unit Tests'
 
 on:
-  push:
+  push
 
 jobs:
+  build-and-deploy:
+    name: 'Azure Login'
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Log in with Azure
+      uses: azure/login@v1
+      with:
+        creds: '${{ secrets.AZURE_CREDENTIALS }}''
+        enable-AzPSSession: true
+    - name: Azure Powershell@v1
+      uses: Azure/powershell@v1
+      with:
+        inlineScript: Get-AzResourceGroup -Name "TF-State"
+        azPSVersion: "latest"
+      
   terraform-unit-tests:
     name: 'Terraform Unit Tests'
     runs-on: ubuntu-latest
