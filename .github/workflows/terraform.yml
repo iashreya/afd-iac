@@ -27,6 +27,9 @@ jobs:
 
     - name: 'Terraform Format'
       run: pwd
+
+    - name: 'Terraform Format'
+      run: ls
         
     - name: 'Terraform Init'
       uses: hashicorp/terraform-github-actions@master
