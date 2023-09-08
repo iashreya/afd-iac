@@ -17,3 +17,6 @@ IaC with TF for AFD
 * terraform plan
 * terraform apply
 * Triggering build
+
+## Important Documents
+* Github Actions workflows for TF
