@@ -55,3 +55,10 @@ jobs:
       with:
         tf_actions_version: 1.5.6
         tf_actions_subcommand: 'apply'
+
+    - name: Terraform Destroy
+      if: github.ref == 'refs/heads/main'
+      uses: hashicorp/terraform-github-actions@master
+      with:
+        tf_actions_version: 1.5.6
+        tf_actions_subcommand: 'destroy'
