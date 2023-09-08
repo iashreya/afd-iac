@@ -1,5 +1,5 @@
 variable "origin_group_name" {
-  type = string
+  type    = string
   default = "ltx1-lx"
 }
 
@@ -13,13 +13,13 @@ variable "fd_id" {
 
 variable "origin_name_and_priority" {
   type = list(object({
-    name = string
+    name     = string
     priority = number
-  }  ))
+  }))
 
   default = [
-    {name = "pop-ltx1-lx", priority = 1},
-    {name = "pop-lor1-lx", priority = 1},
-    {name = "pop-lva1-lx", priority = 1}
+    { name = "pop-ltx1-lx", priority = 1 },
+    { name = "pop-lor1-lx", priority = 1 },
+    { name = "pop-lva1-lx", priority = 1 }
   ]
 }

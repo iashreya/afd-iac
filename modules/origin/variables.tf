@@ -3,11 +3,11 @@ variable "og_id" {
 }
 
 variable "origin_name" {
-  type = string
+  type    = string
   default = "ltx1-lx"
 }
 
 variable "priority" {
-  type = number
+  type    = number
   default = 1
 }

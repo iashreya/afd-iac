@@ -1,5 +1,5 @@
 resource "azurerm_cdn_frontdoor_origin_group" "og" {
-  name = upper(var.origin_group_name)
+  name                     = upper(var.origin_group_name)
   cdn_frontdoor_profile_id = var.fd_id
   session_affinity_enabled = true
 
@@ -18,9 +18,9 @@ resource "azurerm_cdn_frontdoor_origin_group" "og" {
 }
 
 module "origin" {
-  count = length(var.origin_name_and_priority)
-  source = "../origin"
+  count       = length(var.origin_name_and_priority)
+  source      = "../origin"
   origin_name = var.origin_name_and_priority[count.index].name
-  priority = var.origin_name_and_priority[count.index].priority
-  og_id = azurerm_cdn_frontdoor_origin_group.og.id
+  priority    = var.origin_name_and_priority[count.index].priority
+  og_id       = azurerm_cdn_frontdoor_origin_group.og.id
 }
