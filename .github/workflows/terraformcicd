@@ -1,0 +1,33 @@
+name: Terraform CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Setup Terraform
+        run: |
+          curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/local/bin/terraform
+          sudo chmod +x /usr/local/bin/terraform
+        shell: bash
+
+      - name: Login to Azure
+        run: az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} -p ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+      - name: Initialize Terraform
+        run: terraform init
+
+      - name: Plan Terraform Changes
+        run: terraform plan -out=tfplan -input=false
+
+      - name: Apply Terraform Changes
+        run: terraform apply -input=false tfplan
+
