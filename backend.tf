@@ -4,5 +4,6 @@ terraform {
     storage_account_name = "afdtestsa"
     container_name       = "afd-test-container"
     key                  = "prod.terraform.tfstate"
+    use_oidc             = true
   }
 }
