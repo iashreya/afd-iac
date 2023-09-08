@@ -16,3 +16,4 @@ IaC with TF for AFD
 * terraform fmt
 * terraform plan
 * terraform apply
+* Triggering build
